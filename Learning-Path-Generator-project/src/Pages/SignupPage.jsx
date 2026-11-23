@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 
 const SignupPage = () => {
   return (
-  
     <div className="flex min-h-screen w-full flex-col lg:flex-row">
       {/* Left hero panel */}
       <div className="relative hidden lg:flex lg:w-1/2 flex-col justify-center gap-16 bg-[#F8DCC1] px-12 py-16 xl:px-16">
@@ -30,7 +29,7 @@ const SignupPage = () => {
             Home
           </Link>
         </div>
-           <h1 className="max-w-md text-4xl leading-tight tracking-tight text-[black] xl:text-5xl">
+        <h1 className="max-w-md text-4xl leading-tight tracking-tight text-[black] xl:text-5xl">
           <span className="font-bold">Get step by step</span>
           <br />
           <span className="font-bold text-[#86A19A]">
@@ -43,7 +42,7 @@ const SignupPage = () => {
             src={plantImage}
             alt=""
             className="mx-auto h-78 w-56 object-contain xl:w-72"
-          /> 
+          />
         </Link>
       </div>
 

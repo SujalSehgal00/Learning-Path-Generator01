@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { ArrowLeft, Loader2, MailCheck } from "lucide-react";
 import { Link } from "react-router-dom";
-import leafLogo from "../assets/leaf.png";
 
 // Shadcn UI Components
 import { Input } from "@/components/ui/input";
@@ -62,7 +61,7 @@ const ForgotPasswordPage = () => {
         {/* Brand */}
         <div className="mb-2 flex items-center justify-center gap-2">
           <img
-            src={leafLogo}
+            src="/educateu-logo.png"
             alt=""
             aria-hidden="true"
             className="h-7 w-7 object-contain"

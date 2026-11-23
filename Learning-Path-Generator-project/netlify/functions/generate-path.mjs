@@ -37,11 +37,14 @@ export default async (req) => {
     }
 
     return Response.json({ response: result.text });
+
   } catch (error) {
     console.error("Gemini function error:", error);
 
     return Response.json(
-      { error: "Unable to generate your learning path." },
+      {
+        error: error.message || "Unable to generate your learning path.",
+      },
       { status: 500 },
     );
   }

@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Home, Eye, EyeOff, Loader2 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { GoogleLogin } from "@react-oauth/google";
-import leafLogo from "../assets/leaf.png";
 
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -138,14 +137,14 @@ const LoginPage = () => {
         <div className="w-full max-w-sm rounded-2xl bg-white p-8 shadow-lg ring-1 ring-slate-900/5 sm:p-10">
           <div className="mb-8 flex items-center justify-center gap-2">
             <img
-              src={leafLogo}
+              src="/educateu-logo.png"
               alt=""
               aria-hidden="true"
-              className="h-7 w-7 object-contain"
+              className="h-25 w-25 object-contain"
             />
             <h1 className="text-2xl font-extrabold tracking-tight sm:text-3xl">
-              <span className="text-slate-900">Dev</span>
-              <span className="text-emerald-700">Trajectory</span>
+              <span className="text-slate-900">Educate</span>
+              <span className="text-emerald-700">U</span>
             </h1>
           </div>
 

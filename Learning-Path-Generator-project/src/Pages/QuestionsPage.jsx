@@ -11,6 +11,7 @@ export const QuestionsPage = () => {
   const [answers, setAnswers] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [finalPayload, setFinalPayload] = useState(null);
+  const [validationError, setValidationError] = useState("");
 
   const { careerGoal, questionnaire, setQuestionnaire } = useAppContext();
 
@@ -29,10 +30,13 @@ export const QuestionsPage = () => {
 
   const handleSelectOption = (optionId) => {
     if (!currentQuestion) return;
+
     setAnswers((prev) => ({
       ...prev,
       [currentQuestion.id]: optionId,
     }));
+
+    setValidationError("");
   };
 
   const handleNext = () => {
@@ -48,6 +52,16 @@ export const QuestionsPage = () => {
   };
 
   const handleSubmitQuiz = () => {
+    const firstUnansweredIndex = roleQuestions.findIndex(
+      (question) => answers[question.id] == null,
+    );
+
+    if (firstUnansweredIndex !== -1) {
+      setValidationError("Please answer all questions before submitting.");
+      setCurrentIndex(firstUnansweredIndex);
+      return;
+    }
+
     const questionnaireResults = roleQuestions.map((question) => {
       const selectedOptionId = answers[question.id];
 
@@ -153,7 +167,7 @@ export const QuestionsPage = () => {
               </p>
 
               <div className="space-y-4 mb-8">
-                {roleQuestions.map((q) => {
+                {roleQuestions.map((q, index) => {
                   const selectedOpt = q.options.find(
                     (opt) => opt.id === answers[q.id],
                   );
@@ -163,7 +177,7 @@ export const QuestionsPage = () => {
                       className="p-4 bg-gray-50 border border-gray-200 rounded-xl"
                     >
                       <p className="text-lg font-semibold text-gray-800 mb-1">
-                        {q.id}. {q.question}
+                        {index + 1}. {q.question}
                       </p>
                       <p className="text-sm text-[#337563] font-medium bg-blue-50/50 inline-block px-2.5 py-0.5 rounded border border-blue-100">
                         Selected: {selectedOpt ? selectedOpt.text : "None"}
@@ -206,7 +220,15 @@ export const QuestionsPage = () => {
                 </h2>
                 <p className="md:text-lg">
                   Pick the one that feels most true — there's no wrong answer
-                </p>
+                  </p>
+
+
+                  {validationError && (
+                    <p className="text-red-600 text-sm font-medium mt-3">
+                      {validationError}
+                    </p>
+                  )}
+                
               </div>
 
               {/* ANSWERS  */}

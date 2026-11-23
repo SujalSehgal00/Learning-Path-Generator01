@@ -85,20 +85,27 @@ IMPORTANT:
 `;
 
   async function handleSubmit() {
-    if (!questionnaire?.length) return;
-    setLoading(true);
+  if (!questionnaire?.length) return;
 
-    try {
-      const answer = await askGemini(prompt);
-      setResponse(answer);
-    } catch (error) {
-      console.error(error);
-      setResponse("Connection error.");
-    } finally {
-      setLoading(false);
-      navigate("/path-results");
+  setLoading(true);
+
+  try {
+    const answer = await askGemini(prompt);
+
+    if (!answer) {
+      throw new Error("Empty response from Gemini API");
     }
+
+    setResponse(answer);
+    navigate("/path-results");
+
+  } catch (error) {
+    console.error("Gemini API Error:", error);
+    setResponse("Connection error.");
+  } finally {
+    setLoading(false);
   }
+}
 
   useEffect(() => {}, [questionnaire]);
 
